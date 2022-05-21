@@ -1,4 +1,15 @@
 <script lang="ts">
+  import { onMount } from "svelte";
+
+  import { init } from "../socket";
+  let socket: WebSocket = null;
+  onMount(() => {
+    // TODO: migrate to svelte store
+    socket = init({ port: "7001", url: "game" });
+    socket.onmessage = (e) => {
+      console.log(e.data);
+    };
+  });
 </script>
 
 <header>

@@ -18,7 +18,7 @@
 <main>
   <article>
     <section>
-      <div class="game-board">
+      <article class="game-board">
         <div class="mancala_b" />
         <div class="pit-wrapper">
           <div class="pit" />
@@ -35,7 +35,11 @@
           <div class="pit" />
         </div>
         <div class="mancala_a" />
-      </div>
+      </article>
+      <details>
+        <summary>Game Rules</summary>
+        <p>game rules here</p>
+      </details>
     </section>
   </article>
 </main>

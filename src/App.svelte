@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
 
-  import { init } from "../socket";
+  import { init } from "../game_protocol";
   let socket: WebSocket = null;
   onMount(() => {
     // TODO: migrate protocol to svelte store

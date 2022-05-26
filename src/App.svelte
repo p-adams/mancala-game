@@ -4,10 +4,11 @@
   import { init } from "../socket";
   let socket: WebSocket = null;
   onMount(() => {
-    // TODO: migrate to svelte store
+    // TODO: migrate protocol to svelte store
     socket = init({ port: "7001", url: "game" });
     socket.onmessage = (e) => {
       console.log(e.data);
+      socket.send("start");
     };
   });
 </script>
@@ -18,6 +19,9 @@
 <main>
   <article>
     <section>
+      <header>
+        <button on:click={() => socket.send("start")}>start</button>
+      </header>
       <article class="game-board">
         <div class="mancala_b" />
         <div class="pit-wrapper">

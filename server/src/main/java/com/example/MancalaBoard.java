@@ -5,12 +5,15 @@ import java.util.ArrayList;
 public class MancalaBoard {
     private ArrayList<Integer> p1Store;
     private ArrayList<Integer> p2Store;
-    private ArrayList<Integer> pits;
+    private ArrayList<Pit> pits;
 
     public MancalaBoard() {
         this.p1Store = new ArrayList<Integer>();
         this.p2Store = new ArrayList<Integer>();
-        this.pits = new ArrayList<Integer>();
+        this.pits = new ArrayList<Pit>();
+        for (int i = 0; i <= 12; ++i) {
+            this.pits.add(new Pit());
+        }
     }
 
     public ArrayList<Integer> getP1Store() {
@@ -21,7 +24,7 @@ public class MancalaBoard {
         return p2Store;
     }
 
-    public ArrayList<Integer> getPits() {
+    public ArrayList<Pit> getPits() {
         return pits;
     }
 }

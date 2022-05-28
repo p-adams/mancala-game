@@ -12,6 +12,10 @@ public class Pit {
         }
     }
 
+    public void addStone() {
+        stones.add(1);
+    }
+
     public ArrayList<Integer> getStones() {
         return stones;
     }

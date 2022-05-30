@@ -6,8 +6,8 @@ public class MancalaBoard {
     private ArrayList<Integer> p1Store;
     private ArrayList<Integer> p2Store;
 
-    private ArrayList<Pit> _p1pits;
-    private ArrayList<Pit> _p2pits;
+    private ArrayList<Pit> p1pits;
+    private ArrayList<Pit> p2pits;
     private ArrayList<ArrayList<Pit>> pits;
 
     public MancalaBoard() {
@@ -16,18 +16,18 @@ public class MancalaBoard {
     }
 
     public void setBoard() {
-        this._p1pits = new ArrayList<Pit>();
-        this._p2pits = new ArrayList<Pit>();
+        this.p1pits = new ArrayList<Pit>();
+        this.p2pits = new ArrayList<Pit>();
 
         for (int i = 0; i <= 6; ++i) {
-            this._p1pits.add(new Pit(Integer.toString(i)));
+            this.p1pits.add(new Pit(Integer.toString(i)));
         }
         for (int i = 0; i <= 6; ++i) {
-            this._p2pits.add(new Pit(Integer.toString(i)));
+            this.p2pits.add(new Pit(Integer.toString(i)));
         }
 
-        this.pits.add(this._p1pits);
-        this.pits.add(this._p2pits);
+        this.pits.add(this.p1pits);
+        this.pits.add(this.p2pits);
     }
 
     public ArrayList<Integer> getP1Store() {

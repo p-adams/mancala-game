@@ -8,7 +8,6 @@
     socket = init({ port: "7001", url: "game" });
     socket.onmessage = (e) => {
       console.log(e.data);
-      socket.send("start");
     };
   });
 </script>
@@ -20,7 +19,12 @@
   <article>
     <section>
       <header>
-        <button on:click={() => socket.send("start")}>start</button>
+        <button
+          on:click={() =>
+            socket.send(
+              JSON.stringify({ p1Name: "Fred", p2Name: "#Guest123" })
+            )}>start</button
+        >
       </header>
       <article class="game-board">
         <div class="mancala_b" />

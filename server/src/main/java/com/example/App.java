@@ -1,5 +1,7 @@
 package com.example;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import io.javalin.Javalin;
 
 public class App {
@@ -10,7 +12,7 @@ public class App {
             ws.onConnect(ctx -> ctx.send("connected to server"));
             ws.onMessage(ctx -> {
                 GameConfig ex = ctx.messageAsClass(GameConfig.class);
-                System.out.println(ex.getP1Name());
+                ctx.send(ex);
             });
         });
     }

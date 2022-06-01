@@ -7,7 +7,7 @@
     // TODO: migrate protocol to svelte store
     socket = init({ port: "7001", url: "game" });
     socket.onmessage = (e) => {
-      console.log(e.data);
+      console.log(JSON.parse(e.data));
     };
   });
 </script>

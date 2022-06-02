@@ -9,6 +9,8 @@ public class MancalaBoard {
     private ArrayList<Pit> p1pits;
     private ArrayList<Pit> p2pits;
     private ArrayList<ArrayList<Pit>> pits;
+    private String p1PitLabels[] = { "A1", "A2", "A3", "A4", "A5", "A6" };
+    private String p2PitLabels[] = { "B1", "B2", "B3", "B4", "B5", "B6" };
 
     public MancalaBoard() {
         this.p1Store = new ArrayList<Integer>();
@@ -19,11 +21,11 @@ public class MancalaBoard {
         this.p1pits = new ArrayList<Pit>();
         this.p2pits = new ArrayList<Pit>();
 
-        for (int i = 0; i <= 6; ++i) {
-            this.p1pits.add(new Pit(Integer.toString(i)));
+        for (String label : p1PitLabels) {
+            this.p1pits.add(new Pit((label)));
         }
-        for (int i = 0; i <= 6; ++i) {
-            this.p2pits.add(new Pit(Integer.toString(i)));
+        for (String label : p2PitLabels) {
+            this.p2pits.add(new Pit(label));
         }
 
         this.pits.add(this.p1pits);

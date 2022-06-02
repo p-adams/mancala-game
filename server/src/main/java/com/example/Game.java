@@ -5,7 +5,6 @@ public class Game {
     private Player p2;
 
     public Game(GameConfig config) {
-        // TODO: initialize players with config values
         p1 = new Player(config.getP1Name());
         p2 = new Player(config.getP2Name());
     }

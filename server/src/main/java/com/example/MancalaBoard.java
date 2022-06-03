@@ -35,23 +35,22 @@ public class MancalaBoard {
     }
 
     public ArrayList<Integer> getP1Store() {
-        return p1Store;
+        return this.p1Store;
     }
 
     public ArrayList<Integer> getP2Store() {
-        return p2Store;
+        return this.p2Store;
     }
 
     public ArrayList<ArrayList<Pit>> getPits() {
-        return pits;
+        return this.pits;
     }
 
     public int getGamePieceTotal() {
         int count = 0;
         for (ArrayList<Pit> row : this.pits) {
             for (Pit pit : row) {
-                System.out.println(pit.getStonesCount());
-                count = count + pit.getStonesCount();
+                count += pit.getStonesCount();
             }
 
         }

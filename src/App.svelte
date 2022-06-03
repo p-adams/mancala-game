@@ -17,7 +17,7 @@
 </header>
 <main>
   <article>
-    <section>
+    <section class="main-section">
       <header>
         <button
           on:click={() =>
@@ -69,8 +69,9 @@
     display: flex;
     justify-content: space-between;
     height: 500px;
-    width: 700px;
+    width: 90%;
     border: 1px solid black;
+    margin: 10px 0 10px 0;
   }
 
   .mancala_a,
@@ -88,7 +89,11 @@
   .pit {
     border: 1px solid red;
   }
-
+  .main-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   @media (min-width: 480px) {
     h3 {
       max-width: none;

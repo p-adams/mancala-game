@@ -15,9 +15,11 @@ public class MancalaBoard {
     public MancalaBoard() {
         this.p1Store = new ArrayList<Integer>();
         this.p2Store = new ArrayList<Integer>();
+        this.setBoard();
     }
 
-    public void setBoard() {
+    private void setBoard() {
+        this.pits = new ArrayList<ArrayList<Pit>>();
         this.p1pits = new ArrayList<Pit>();
         this.p2pits = new ArrayList<Pit>();
 
@@ -42,5 +44,17 @@ public class MancalaBoard {
 
     public ArrayList<ArrayList<Pit>> getPits() {
         return pits;
+    }
+
+    public int getGamePieceTotal() {
+        int count = 0;
+        for (ArrayList<Pit> row : this.pits) {
+            for (Pit pit : row) {
+                System.out.println(pit.getStonesCount());
+                count = count + pit.getStonesCount();
+            }
+
+        }
+        return count;
     }
 }

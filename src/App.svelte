@@ -9,7 +9,7 @@
     socket = init({ port: "7001", url: "game" });
     socket.onmessage = (e) => {
       const data = JSON.parse(e.data);
-      processMessage("START_GAM", data); // temp hardcode message type until message protocol is built-out
+      processMessage("START_GAME", data); // temp hardcode message type until message protocol is built-out
       gameBoard = data;
     };
   });

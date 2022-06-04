@@ -1,7 +1,8 @@
+// TODO: convert to svelte store
 type messageHandler = (data: any) => any;
 
 function startGame(gameBoard) {
-  console.log(gameBoard);
+  console.log("game ", gameBoard);
 }
 
 const messageMap = new Map<string, messageHandler>();

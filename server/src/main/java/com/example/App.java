@@ -11,10 +11,9 @@ public class App {
         app.ws("/game", ws -> {
             ws.onConnect(ctx -> ctx.send("connected to server"));
             ws.onMessage(ctx -> {
-                GameConfig ex = ctx.messageAsClass(GameConfig.class);
+                // GameConfig ex = ctx.messageAsClass(GameConfig.class);
                 MancalaBoard mb = new MancalaBoard();
-                System.out.println(mb.getPits());
-                ctx.send(ex);
+                ctx.send(mb);
             });
         });
     }

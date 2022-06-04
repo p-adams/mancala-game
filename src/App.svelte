@@ -1,13 +1,13 @@
 <script lang="ts">
   import { onMount } from "svelte";
-
   import { init } from "../game_protocol";
   let socket: WebSocket = null;
+  let gameBoard = null;
   onMount(() => {
     // TODO: migrate protocol to svelte store
     socket = init({ port: "7001", url: "game" });
     socket.onmessage = (e) => {
-      console.log(JSON.parse(e.data));
+      gameBoard = JSON.parse(e.data);
     };
   });
 </script>

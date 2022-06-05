@@ -4,11 +4,12 @@
   import { processMessage } from "../protocol/message";
   let socket: WebSocket = null;
   let gameBoard = null;
+  const socketData = (data) => JSON.parse(data);
   onMount(() => {
     // TODO: migrate protocol to svelte store
     socket = init({ port: "7001", url: "game" });
     socket.onmessage = (e) => {
-      const data = JSON.parse(e.data);
+      const data = socketData(e.data);
       processMessage("START_GAME", data); // temp hardcode message type until message protocol is built-out
       gameBoard = data;
     };

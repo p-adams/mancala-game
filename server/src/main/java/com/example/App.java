@@ -1,6 +1,6 @@
 package com.example;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.example.protocol.Message;
 
 import io.javalin.Javalin;
 
@@ -11,9 +11,9 @@ public class App {
         app.ws("/game", ws -> {
             ws.onConnect(ctx -> ctx.send("connected to server"));
             ws.onMessage(ctx -> {
-                // GameConfig ex = ctx.messageAsClass(GameConfig.class);
-                MancalaBoard mb = new MancalaBoard();
-                ctx.send(mb);
+                Game mancalaGame = new Game(ctx.messageAsClass(GameConfig.class));
+                Message message = new Message("START_GAME", mancalaGame);
+                ctx.send(message);
             });
         });
     }

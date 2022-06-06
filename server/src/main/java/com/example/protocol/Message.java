@@ -2,9 +2,9 @@ package com.example.protocol;
 
 public class Message {
     private String messageType;
-    private int data;
+    private Object data;
 
-    public Message(String messageType, int data) {
+    public Message(String messageType, Object data) {
         this.messageType = messageType;
         this.data = data;
     }
@@ -13,7 +13,7 @@ public class Message {
         return messageType;
     }
 
-    public int getData() {
+    public Object getData() {
         return data;
     }
 }

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount } from "svelte";
+  import { afterUpdate, onMount } from "svelte";
   import { init } from "../protocol/socket";
   import { processMessage } from "../protocol/message";
   let socket: WebSocket = null;
@@ -8,10 +8,12 @@
   onMount(() => {
     // TODO: migrate protocol to svelte store
     socket = init({ port: "7001", url: "game" });
+  });
+  afterUpdate(() => {
     socket.onmessage = (e) => {
       const data = socketData(e.data);
       gameBoard = processMessage("START_GAME", data);
-      console.log(gameBoard);
+      console.log("gameboard afterMount: ", gameBoard);
     };
   });
 </script>
@@ -32,6 +34,7 @@
       </header>
       <article class="game-board">
         <div class="mancala_b" />
+
         <div class="pit-wrapper">
           <div class="pit" />
           <div class="pit" />

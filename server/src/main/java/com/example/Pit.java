@@ -25,4 +25,8 @@ public class Pit {
     public Integer getStonesCount() {
         return this.stones.size();
     }
+
+    public String getLabel() {
+        return this.label;
+    }
 }

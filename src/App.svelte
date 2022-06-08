@@ -1,20 +1,20 @@
 <script lang="ts">
   import { afterUpdate, onMount } from "svelte";
   import { init } from "../protocol/socket";
-  import { Message, processMessage } from "../protocol/message";
+  import { SocketMessage, processMessage } from "../protocol/message";
   let socket: WebSocket = null;
-  let startGame: Message = null;
-  const socketMessage = (data): Message => JSON.parse(data);
+  let gameBoard: SocketMessage = null;
+  const socketMessage = (data): SocketMessage => JSON.parse(data);
   onMount(() => {
     // TODO: migrate protocol to svelte store
     socket = init({ port: "7001", url: "game" });
   });
-  $: board = startGame?.data?.board;
+  $: board = gameBoard?.data?.board;
 
   afterUpdate(() => {
     socket.onmessage = (e) => {
       const data = socketMessage(e.data);
-      startGame = processMessage("START_GAME", data);
+      gameBoard = processMessage("START_GAME", data);
     };
   });
 </script>

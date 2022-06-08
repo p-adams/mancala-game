@@ -1,25 +1,28 @@
 // TODO: convert to svelte store
-type messageHandler = (data: Message) => Message;
+type messageHandler = (data: SocketMessage) => SocketMessage;
 
-export interface Message {
-  messageType: string;
-  data: {
-    p1: {
-      name: string;
-    };
-    p2: {
-      name: string;
-    };
-    board: {
-      p1Store: any[];
-      p2Store: any[];
-      pits: Pit[];
-      gamePieceTotal: number;
-    };
+interface SocketGameData {
+  p1: {
+    name: string;
+  };
+  p2: {
+    name: string;
+  };
+  board: {
+    p1Store: Pit[];
+    p2Store: Pit[];
+    pits: Pit[];
+    gamePieceTotal: number;
   };
 }
 
+export interface SocketMessage {
+  messageType: string;
+  data: SocketGameData;
+}
+
 interface Pit {
+  label: string;
   stones: number[];
   stonesCount: number;
 }
@@ -32,7 +35,7 @@ function startGame(gameBoard) {
 const messageMap = new Map<string, messageHandler>();
 messageMap.set("START_GAME", startGame);
 
-export function processMessage(messageType: string, data: Message) {
+export function processMessage(messageType: string, data: SocketMessage) {
   try {
     const handler = messageMap.get(messageType);
     return handler(data);

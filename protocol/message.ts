@@ -1,7 +1,7 @@
 // TODO: convert to svelte store
 type messageHandler = (data: SocketMessage) => SocketMessage;
 
-interface SocketGameData {
+export interface SocketGameData {
   p1: {
     name: string;
   };
@@ -18,7 +18,7 @@ interface SocketGameData {
 
 export interface SocketMessage {
   messageType: string;
-  data: SocketGameData;
+  data: any;
 }
 
 interface Pit {

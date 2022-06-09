@@ -10,12 +10,17 @@ public class MancalaBoardTest {
 
     @Test
     public void testGetP1Store() {
-        assertEquals(0, gameBoard.getP1Store().size());
+        assertEquals(0, gameBoard.getP1Store().getStones().size());
     }
 
     @Test
     public void testGetP2Store() {
-        assertEquals(0, gameBoard.getP2Store().size());
+        assertEquals(0, gameBoard.getP2Store().getStones().size());
+    }
+
+    @Test
+    public void testGetTotalStonesInP1Pit() {
+        assertEquals(0, gameBoard.getP1Store().getStones().size());
     }
 
     @Test

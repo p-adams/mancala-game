@@ -3,12 +3,16 @@ package com.example;
 import java.util.ArrayList;
 
 public class Pit {
-    ArrayList<Integer> stones;
-    String label;
+    private ArrayList<Integer> stones;
+    private String label;
 
     public Pit(String label) {
         this.label = label;
         this.stones = new ArrayList<Integer>();
+
+    }
+
+    public void setStones() {
         for (int i = 0; i < 4; ++i) {
             this.stones.add(1);
         }

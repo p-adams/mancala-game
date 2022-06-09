@@ -3,8 +3,8 @@ package com.example;
 import java.util.ArrayList;
 
 public class MancalaBoard {
-    private ArrayList<Integer> p1Store;
-    private ArrayList<Integer> p2Store;
+    private Pit p1Store;
+    private Pit p2Store;
 
     private ArrayList<Pit> p1pits;
     private ArrayList<Pit> p2pits;
@@ -13,32 +13,38 @@ public class MancalaBoard {
     private String p2PitLabels[] = { "B1", "B2", "B3", "B4", "B5", "B6" };
 
     public MancalaBoard() {
-        this.p1Store = new ArrayList<Integer>();
-        this.p2Store = new ArrayList<Integer>();
+
         this.setBoard();
     }
 
     private void setBoard() {
+
+        this.p1Store = new Pit("P1");
+        this.p2Store = new Pit("P2");
         this.pits = new ArrayList<ArrayList<Pit>>();
         this.p1pits = new ArrayList<Pit>();
         this.p2pits = new ArrayList<Pit>();
 
         for (String label : p1PitLabels) {
-            this.p1pits.add(new Pit((label)));
+            Pit pit = new Pit(label);
+            pit.setStones();
+            this.p1pits.add(pit);
         }
         for (String label : p2PitLabels) {
-            this.p2pits.add(new Pit(label));
+            Pit pit = new Pit(label);
+            pit.setStones();
+            this.p2pits.add(pit);
         }
 
         this.pits.add(this.p1pits);
         this.pits.add(this.p2pits);
     }
 
-    public ArrayList<Integer> getP1Store() {
+    public Pit getP1Store() {
         return this.p1Store;
     }
 
-    public ArrayList<Integer> getP2Store() {
+    public Pit getP2Store() {
         return this.p2Store;
     }
 

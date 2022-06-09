@@ -22,10 +22,15 @@
     };
   });
 
+  // TODO: move reactive declarations to Svelte store
+  $: p1Store = gameBoard?.data?.board.p1Store ?? {};
+
+  $: p2Store = gameBoard?.data?.board.p2Store ?? {};
+
   $: pits = () => {
     if (!gameBoard?.data?.board?.pits) return [];
     const [p1Row, p2Row] = gameBoard?.data?.board.pits;
-    // display player 1 row on bottom; player two reversed on top
+    // display player 1 row on bottom; player two on top reversed
     return [[...p2Row].reverse(), p1Row].flat();
   };
 </script>

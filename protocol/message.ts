@@ -11,14 +11,14 @@ export interface SocketGameData {
   board: {
     p1Store: Pit[];
     p2Store: Pit[];
-    pits: Pit[];
+    pits: Pit[][];
     gamePieceTotal: number;
   };
 }
 
 export interface SocketMessage {
   messageType: string;
-  data: any;
+  data: SocketGameData;
 }
 
 interface Pit {

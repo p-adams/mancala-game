@@ -14,15 +14,20 @@
     // TODO: migrate protocol to svelte store
     socket = init({ port: "7001", url: "game" });
   });
-  $: gameData = gameBoard?.data as SocketGameData;
-  $: board = gameData.board;
-
   afterUpdate(() => {
     socket.onmessage = (e) => {
       const data = socketMessage(e.data);
       gameBoard = processMessage("START_GAME", data);
+      console.log(gameBoard);
     };
   });
+
+  $: pits = () => {
+    if (!gameBoard?.data?.board?.pits) return [];
+    const [p1Row, p2Row] = gameBoard?.data?.board.pits;
+    // display player 1 row on bottom; player two reversed on top
+    return [[...p2Row].reverse(), p1Row].flat();
+  };
 </script>
 
 <header>
@@ -35,26 +40,21 @@
         <button
           on:click={() =>
             socket.send(
-              JSON.stringify({ p1Name: "Fred", p2Name: "#Guest123" })
+              JSON.stringify({
+                p1Name: "Fred",
+                p2Name: "#Guest123",
+              })
             )}>start</button
         >
       </header>
+
       <article class="game-board">
         <div class="mancala_b" />
 
         <div class="pit-wrapper">
-          <div class="pit" />
-          <div class="pit" />
-          <div class="pit" />
-          <div class="pit" />
-          <div class="pit" />
-          <div class="pit" />
-          <div class="pit" />
-          <div class="pit" />
-          <div class="pit" />
-          <div class="pit" />
-          <div class="pit" />
-          <div class="pit" />
+          {#each pits() as pit}
+            <div class="pit">{pit.label}</div>
+          {/each}
         </div>
         <div class="mancala_a" />
       </article>

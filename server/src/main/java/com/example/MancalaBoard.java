@@ -3,8 +3,8 @@ package com.example;
 import java.util.ArrayList;
 
 public class MancalaBoard {
-    private ArrayList<Pit> p1Store;
-    private ArrayList<Pit> p2Store;
+    private ArrayList<Integer> p1Store;
+    private ArrayList<Integer> p2Store;
 
     private ArrayList<Pit> p1pits;
     private ArrayList<Pit> p2pits;
@@ -13,8 +13,8 @@ public class MancalaBoard {
     private String p2PitLabels[] = { "B1", "B2", "B3", "B4", "B5", "B6" };
 
     public MancalaBoard() {
-        this.p1Store = new ArrayList<Pit>();
-        this.p2Store = new ArrayList<Pit>();
+        this.p1Store = new ArrayList<Integer>();
+        this.p2Store = new ArrayList<Integer>();
         this.setBoard();
     }
 
@@ -34,11 +34,11 @@ public class MancalaBoard {
         this.pits.add(this.p2pits);
     }
 
-    public ArrayList<Pit> getP1Store() {
+    public ArrayList<Integer> getP1Store() {
         return this.p1Store;
     }
 
-    public ArrayList<Pit> getP2Store() {
+    public ArrayList<Integer> getP2Store() {
         return this.p2Store;
     }
 

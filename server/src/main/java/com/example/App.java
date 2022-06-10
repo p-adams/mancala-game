@@ -1,6 +1,7 @@
 package com.example;
 
 import com.example.protocol.Message;
+import com.example.protocol.MessageProtocol;
 
 import io.javalin.Javalin;
 
@@ -13,9 +14,18 @@ public class App {
                 System.out.println("connected to server");
             });
             ws.onMessage(ctx -> {
-                Game mancalaGame = new Game(ctx.messageAsClass(GameConfig.class));
-                Message message = new Message("START_GAME", mancalaGame);
-                ctx.send(message);
+                MessageProtocol msg = ctx.messageAsClass(MessageProtocol.class);
+                switch (msg.getMessageType()) {
+                    case "START_GAME":
+                        Game mancalaGame = new Game(msg.getData());
+                        Message message = new Message("START_GAME", mancalaGame);
+                        ctx.send(message);
+                        break;
+
+                    default:
+                        break;
+                }
+
             });
         });
     }

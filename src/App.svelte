@@ -46,8 +46,11 @@
           on:click={() =>
             socket.send(
               JSON.stringify({
-                p1Name: "Fred",
-                p2Name: "#Guest123",
+                messageType: "START_GAME",
+                data: {
+                  p1Name: "Fred",
+                  p2Name: "#Guest123",
+                },
               })
             )}>start</button
         >

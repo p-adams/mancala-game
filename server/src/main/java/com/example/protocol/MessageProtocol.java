@@ -1,15 +1,15 @@
 package com.example.protocol;
 
-import com.example.GameConfig;
+import com.example.GameData;
 
 public class MessageProtocol {
     private String messageType;
-    private GameConfig data;
+    private GameData data;
 
     public MessageProtocol() {
     }
 
-    public GameConfig getData() {
+    public GameData getData() {
         return data;
     }
 

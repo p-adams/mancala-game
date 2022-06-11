@@ -1,10 +1,10 @@
 package com.example;
 
-public class GameConfig {
+public class GameData {
     private String p1Name;
     private String p2Name;
 
-    public GameConfig() {
+    public GameData() {
     }
 
     public String getP1Name() {

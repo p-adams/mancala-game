@@ -5,9 +5,9 @@ public class Game {
     private Player p2;
     private MancalaBoard board;
 
-    public Game(GameConfig config) {
-        p1 = new Player(config.getP1Name());
-        p2 = new Player(config.getP2Name());
+    public Game(GameData gameData) {
+        p1 = new Player(gameData.getP1Name());
+        p2 = new Player(gameData.getP2Name());
         this.board = new MancalaBoard();
     }
 

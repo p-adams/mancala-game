@@ -1,15 +1,13 @@
 <script lang="ts">
   import { afterUpdate, onMount } from "svelte";
   import { init } from "../protocol/socket";
-  import {
-    SocketGameData,
-    SocketMessage,
-    processMessage,
-  } from "../protocol/message";
+  import { SocketMessage, processMessage } from "../protocol/message";
   let socket: WebSocket = null;
   let gameBoard: SocketMessage = null;
 
   const socketMessage = (data): SocketMessage => JSON.parse(data);
+
+  const sendMessage = (payload) => socket.send(JSON.stringify(payload));
   onMount(() => {
     // TODO: migrate protocol to svelte store
     socket = init({ port: "7001", url: "game" });
@@ -44,15 +42,13 @@
       <header>
         <button
           on:click={() =>
-            socket.send(
-              JSON.stringify({
-                messageType: "START_GAME",
-                data: {
-                  p1Name: "Fred",
-                  p2Name: "#Guest123",
-                },
-              })
-            )}>start</button
+            sendMessage({
+              messageType: "START_GAME",
+              data: {
+                p1Name: "Fred",
+                p2Name: "#Guest123",
+              },
+            })}>start</button
         >
       </header>
 

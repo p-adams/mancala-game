@@ -9,8 +9,8 @@ export interface SocketGameData {
     name: string;
   };
   board: {
-    p1Store: Pit[];
-    p2Store: Pit[];
+    p1Store: Pit;
+    p2Store: Pit;
     pits: Pit[][];
     gamePieceTotal: number;
   };
@@ -36,10 +36,9 @@ const messageMap = new Map<string, messageHandler>();
 messageMap.set("START_GAME", startGame);
 
 export function processMessage(messageType: string, data: SocketMessage) {
-  try {
-    const handler = messageMap.get(messageType);
+  const handler = messageMap.get(messageType);
+  if (handler) {
     return handler(data);
-  } catch (error) {
-    throw new Error("cannot process message");
   }
+  return null;
 }

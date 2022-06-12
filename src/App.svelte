@@ -2,10 +2,11 @@
   import { afterUpdate, onMount } from "svelte";
   import { init } from "../protocol/socket";
   import { SocketMessage, processMessage } from "../protocol/message";
-  let socket: WebSocket = null;
-  let gameBoard: SocketMessage = null;
 
-  const socketMessage = (data): SocketMessage => JSON.parse(data);
+  let socket: WebSocket = null;
+  let message: SocketMessage = null;
+
+  const socketData = (data): SocketMessage => JSON.parse(data);
 
   const sendMessage = (payload) => socket.send(JSON.stringify(payload));
   onMount(() => {
@@ -13,21 +14,22 @@
     socket = init({ port: "7001", url: "game" });
   });
   afterUpdate(() => {
-    socket.onmessage = (e) => {
-      const data = socketMessage(e.data);
-      gameBoard = processMessage("START_GAME", data);
-      console.log(gameBoard);
+    socket.onmessage = (msgEvt) => {
+      const data = socketData(msgEvt.data);
+      message = processMessage(data.messageType, data);
     };
   });
 
   // TODO: move reactive declarations to Svelte store
-  $: p1Store = gameBoard?.data?.board.p1Store ?? {};
+  $: p1Store = message?.data?.board.p1Store;
 
-  $: p2Store = gameBoard?.data?.board.p2Store ?? {};
+  $: p2Store = message?.data?.board.p2Store;
+
+  $: board = message?.data?.board;
 
   $: pits = () => {
-    if (!gameBoard?.data?.board?.pits) return [];
-    const [p1Row, p2Row] = gameBoard?.data?.board.pits;
+    if (!message?.data?.board?.pits) return [];
+    const [p1Row, p2Row] = message?.data?.board.pits;
     // display player 1 row on bottom; player two on top reversed
     return [[...p2Row].reverse(), p1Row].flat();
   };
@@ -47,6 +49,7 @@
               data: {
                 p1Name: "Fred",
                 p2Name: "#Guest123",
+                board,
               },
             })}>start</button
         >

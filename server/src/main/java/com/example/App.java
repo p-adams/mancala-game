@@ -18,7 +18,7 @@ public class App {
                 switch (msg.getMessageType()) {
                     case "START_GAME":
                         Game mancalaGame = new Game(msg.getData());
-                        Message message = new Message("STAR_GAME", mancalaGame);
+                        Message message = new Message("START_GAME", mancalaGame);
                         ctx.send(message);
                         break;
 

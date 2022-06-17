@@ -22,6 +22,10 @@ public class Pit {
         this.stones.add(1);
     }
 
+    public void removeStone() {
+        this.stones.remove(this.stones.size() - 1);
+    }
+
     public ArrayList<Integer> getStones() {
         return this.stones;
     }

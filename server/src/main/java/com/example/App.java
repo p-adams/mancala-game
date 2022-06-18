@@ -17,7 +17,7 @@ public class App {
                 MessageProtocol msg = ctx.messageAsClass(MessageProtocol.class);
                 switch (msg.getMessageType()) {
                     case "START_GAME":
-                        Game mancalaGame = new Game(msg.getData());
+                        GameCoordinator mancalaGame = new GameCoordinator(msg.getData());
                         Message message = new Message("START_GAME", mancalaGame);
                         ctx.send(message);
                         break;

@@ -30,8 +30,10 @@
   $: pits = () => {
     if (!message?.data?.board?.pits) return [];
     const [p1Row, p2Row] = message?.data?.board.pits;
-    // display player 1 row on bottom; player two on top reversed
-    return [[...p2Row].reverse(), p1Row].flat();
+    const p1BoardView = [[...p2Row].reverse(), p1Row].flat();
+    // TODO: conditionally return board view based on player 1/2
+    const p2BoardView = [[...p1Row].reverse(), p2Row].flat();
+    return p1BoardView;
   };
 
   function pickupStones(label: string) {

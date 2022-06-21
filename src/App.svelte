@@ -33,6 +33,13 @@
     // display player 1 row on bottom; player two on top reversed
     return [[...p2Row].reverse(), p1Row].flat();
   };
+
+  function pickupStones(label: string) {
+    console.log(`pickup stones from column: ${label}`);
+  }
+  function dropStone(label: string) {
+    console.log(`drop stone in column: ${label}`);
+  }
 </script>
 
 <header>
@@ -60,7 +67,13 @@
 
         <div class="pit-wrapper">
           {#each pits() as pit}
-            <div class="pit">{pit.label}</div>
+            <div
+              class="pit"
+              on:dblclick={() => pickupStones(pit.label)}
+              on:click={() => dropStone(pit.label)}
+            >
+              {pit.label}
+            </div>
           {/each}
         </div>
         <div class="mancala_a" />

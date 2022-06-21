@@ -63,7 +63,7 @@ public class MancalaBoard {
         return count;
     }
 
-    public void pickupStone() {
+    public void pickupStones() {
 
     }
 

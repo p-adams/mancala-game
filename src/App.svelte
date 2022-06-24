@@ -21,9 +21,9 @@
   });
 
   // TODO: move reactive declarations to Svelte store
-  $: p1Store = message?.data?.board.p1Store;
+  $: p1Store = message?.data?.board?.p1Store;
 
-  $: p2Store = message?.data?.board.p2Store;
+  $: p2Store = message?.data?.board?.p2Store;
 
   $: board = message?.data?.board;
 
@@ -65,20 +65,33 @@
       </header>
 
       <article class="game-board">
-        <div class="mancala_b" />
+        <div class="mancala_b">
+          <div class="Pit-label">
+            {p2Store?.label ?? ""}
+          </div>
+          <div class="Pit">pit</div>
+        </div>
 
         <div class="pit-wrapper">
           {#each pits() as pit}
             <div
-              class="pit"
+              class="Pit-wrapper"
               on:dblclick={() => pickupStones(pit.label)}
               on:click={() => dropStone(pit.label)}
             >
-              {pit.label}
+              <div class="Pit-label">
+                {pit.label}
+              </div>
+              <div class="Pit">pit</div>
             </div>
           {/each}
         </div>
-        <div class="mancala_a" />
+        <div class="mancala_a">
+          <div class="Pit-label">
+            {p1Store?.label ?? ""}
+          </div>
+          <div class="Pit">pit</div>
+        </div>
       </article>
       <details>
         <summary>Game Rules</summary>
@@ -122,7 +135,7 @@
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: repeat(2, 1fr);
   }
-  .pit {
+  .Pit-wrapper {
     border: 1px solid red;
   }
   .main-section {

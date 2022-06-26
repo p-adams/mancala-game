@@ -72,7 +72,7 @@
           <div class="Pit Store">pit</div>
         </div>
 
-        <div class="pit-wrapper">
+        <div class="Pit-grid">
           {#each pits() as pit}
             <div
               class="Pit-wrapper"
@@ -83,9 +83,11 @@
                 {pit.label}
               </div>
               <div class="Pit">
-                pit
-
-                <div class="Stone-wrapper">stones</div>
+                <div class="Stone-wrapper">
+                  {#each pit.stones as stone}
+                    <div class="Stone" />
+                  {/each}
+                </div>
               </div>
             </div>
           {/each}
@@ -134,10 +136,10 @@
     width: 25%;
   }
 
-  .pit-wrapper {
+  .Pit-grid {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(6, 100px);
     grid-template-rows: repeat(2, 1fr);
     gap: 10px;
     margin: 0 10px 0 10px;
@@ -159,6 +161,24 @@
   }
   .Pit.Store {
     height: calc(100% - var(--Pit-label-h));
+  }
+  .Stone-wrapper {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    height: calc(100% - var(--Pit-label-h) - 120px);
+    width: 90%;
+    padding: 4px;
+    background-color: black;
+    border-radius: 50%;
+  }
+  .Stone {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    padding: px;
+    background-color: green;
   }
   .main-section {
     display: flex;

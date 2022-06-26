@@ -67,9 +67,9 @@
       <article class="game-board">
         <div class="mancala_b">
           <div class="Pit-label">
-            {p2Store?.label ?? ""}
+            {p2Store?.label ?? "P2 Store"}
           </div>
-          <div class="Pit">pit</div>
+          <div class="Pit Store">pit</div>
         </div>
 
         <div class="pit-wrapper">
@@ -82,15 +82,19 @@
               <div class="Pit-label">
                 {pit.label}
               </div>
-              <div class="Pit">pit</div>
+              <div class="Pit">
+                pit
+
+                <div class="Stone-wrapper">stones</div>
+              </div>
             </div>
           {/each}
         </div>
         <div class="mancala_a">
           <div class="Pit-label">
-            {p1Store?.label ?? ""}
+            {p1Store?.label ?? "P1 Store"}
           </div>
-          <div class="Pit">pit</div>
+          <div class="Pit store">pit</div>
         </div>
       </article>
       <details>
@@ -106,6 +110,7 @@
   :root {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
       Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    --Pit-label-h: 18px;
   }
 
   main {
@@ -134,9 +139,26 @@
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: repeat(2, 1fr);
+    gap: 10px;
+    margin: 0 10px 0 10px;
   }
   .Pit-wrapper {
-    border: 1px solid red;
+    border: 1px solid rgb(182, 83, 83);
+  }
+  .Pit {
+    height: calc(100% - var(--Pit-label-h));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(182, 83, 83);
+  }
+  .Pit-label {
+    color: blue;
+    height: var(--Pit-label-h);
+  }
+  .Pit.Store {
+    height: calc(100% - var(--Pit-label-h));
   }
   .main-section {
     display: flex;

@@ -2,7 +2,6 @@
   import { afterUpdate, onMount } from "svelte";
   import { init } from "../protocol/socket";
   import { SocketMessage, processMessage } from "../protocol/message";
-  import { dataset_dev } from "svelte/internal";
 
   let socket: WebSocket = null;
   let message: SocketMessage = null;

@@ -5,7 +5,10 @@ public class GameCoordinator {
     private Player p2;
     private MancalaBoard board;
 
-    public GameCoordinator(GameData gameData) {
+    public GameCoordinator() {
+    }
+
+    public void setGame(GameData gameData) {
         p1 = new Player(gameData.getP1Name());
         p2 = new Player(gameData.getP2Name());
         this.board = new MancalaBoard();

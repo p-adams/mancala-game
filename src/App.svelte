@@ -2,6 +2,7 @@
   import { afterUpdate, onMount } from "svelte";
   import { init } from "../protocol/socket";
   import { SocketMessage, processMessage } from "../protocol/message";
+  import { dataset_dev } from "svelte/internal";
 
   let socket: WebSocket = null;
   let message: SocketMessage = null;
@@ -93,7 +94,16 @@
           {/each}
         </div>
         <div class="mancala_a">
-          <div class="Pit-label">
+          <div
+            class="Pit-label"
+            on:click={() =>
+              sendMessage({
+                messageType: "PLAYER_MOVE",
+                data: {
+                  colId: "P1 Store",
+                },
+              })}
+          >
             {p1Store?.label ?? "P1 Store"}
           </div>
           <div class="Pit store">pit</div>

@@ -9,6 +9,8 @@ public class App {
 
     public static void main(String[] args) {
         Javalin app = Javalin.create().start(7001);
+        GameCoordinator mancalaGame = new GameCoordinator();
+        Message message = new Message();
         app.ws("/game", ws -> {
             ws.onConnect(ctx -> {
                 System.out.println("connected to server");
@@ -17,14 +19,13 @@ public class App {
                 MessageProtocol msg = ctx.messageAsClass(MessageProtocol.class);
                 switch (msg.getMessageType()) {
                     case "START_GAME":
-                        // TODO move Game Coordinator instance outside onMessage event
-                        GameCoordinator mancalaGame = new GameCoordinator(msg.getData());
-                        Message message = new Message("START_GAME", mancalaGame);
+                        mancalaGame.setGame(msg.getData());
+                        message.setMessage("START_GAME", mancalaGame);
                         ctx.send(message);
                         break;
                     case "PLAYER_MOVE":
                         // TODO: handle player move
-                        System.out.println("player move");
+                        System.out.println(msg.getData().getColId());
                         break;
 
                     default:

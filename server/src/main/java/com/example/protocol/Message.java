@@ -4,7 +4,11 @@ public class Message {
     private String messageType;
     private Object data;
 
-    public Message(String messageType, Object data) {
+    public Message() {
+
+    }
+
+    public void setMessage(String messageType, Object data) {
         this.messageType = messageType;
         this.data = data;
     }

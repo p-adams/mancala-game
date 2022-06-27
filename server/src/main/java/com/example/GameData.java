@@ -1,8 +1,9 @@
 package com.example;
 
 public class GameData {
-    private String p1Name;
-    private String p2Name;
+    private String p1Name = null;
+    private String p2Name = null;
+    private String colId = null;
 
     public GameData() {
     }
@@ -13,6 +14,10 @@ public class GameData {
 
     public String getP2Name() {
         return p2Name;
+    }
+
+    public String getColId() {
+        return colId;
     }
 
 }

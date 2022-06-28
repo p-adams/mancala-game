@@ -27,6 +27,7 @@ public class GameCoordinator {
     }
 
     public void pickupStones(String label) {
+
     }
 
     public void dropStone(String label) {

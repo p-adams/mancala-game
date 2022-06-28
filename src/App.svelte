@@ -37,7 +37,13 @@
   };
 
   function pickupStones(label: string) {
-    console.log(`pickup stones from column: ${label}`);
+    sendMessage({
+      messageType: "PICKUP_STONES",
+      data: {
+        colId: label,
+        player: "",
+      },
+    });
   }
   function dropStone(label: string) {
     console.log(`drop stone in column: ${label}`);
@@ -74,18 +80,18 @@
 
         <div class="Pit-grid">
           {#each pits() as pit}
-            <div
-              class="Pit-wrapper"
-              on:dblclick={() => pickupStones(pit.label)}
-              on:click={() => dropStone(pit.label)}
-            >
+            <div class="Pit-wrapper">
               <div class="Pit-label">
                 {pit.label}
               </div>
               <div class="Pit">
                 <div class="Stone-wrapper">
                   {#each pit.stones as stone}
-                    <div class="Stone" />
+                    <div
+                      class="Stone"
+                      on:dblclick={() => pickupStones(pit.label)}
+                      on:click={() => dropStone(pit.label)}
+                    />
                   {/each}
                 </div>
               </div>
@@ -93,16 +99,7 @@
           {/each}
         </div>
         <div class="mancala_a">
-          <div
-            class="Pit-label"
-            on:click={() =>
-              sendMessage({
-                messageType: "PLAYER_MOVE",
-                data: {
-                  colId: "P1 Store",
-                },
-              })}
-          >
+          <div class="Pit-label">
             {p1Store?.label ?? "P1 Store"}
           </div>
           <div class="Pit store">pit</div>

@@ -4,6 +4,7 @@ public class GameData {
     private String p1Name = null;
     private String p2Name = null;
     private String colId = null;
+    private Player player = null;
 
     public GameData() {
     }
@@ -18,6 +19,10 @@ public class GameData {
 
     public String getColId() {
         return colId;
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 
 }

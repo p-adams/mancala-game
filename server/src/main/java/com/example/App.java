@@ -23,9 +23,8 @@ public class App {
                         message.setMessage("START_GAME", mancalaGame);
                         ctx.send(message);
                         break;
-                    case "PLAYER_MOVE":
-                        // TODO: handle player move
-                        System.out.println(msg.getData().getColId());
+                    case "PICKUP_STONES":
+                        mancalaGame.pickupStones(msg.getData().getColId());
                         break;
 
                     default:
